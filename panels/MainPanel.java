@@ -24,9 +24,14 @@ public class MainPanel extends JPanel {
 
 		JButton saveButton = new JButton("Save");
 		JButton addCardButton = new JButton("+");
+		JButton removeCardButton = new JButton("Remove Curr");
 		add(saveButton);
 		add(addCardButton);
+		add(removeCardButton);
 
+		ScrollPanel sp = new ScrollPanel();
+		add(sp.getScrollPane());
+		
 		saveButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -40,13 +45,21 @@ public class MainPanel extends JPanel {
 		addCardButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-			
+				sp.addCardNews();
+				
+			}
+		});
+		
+		removeCardButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				sp.removeCardNews();
+				
 			}
 		});
 		
 
-		ScrollPanel sp = new ScrollPanel();
-		add(sp.getScrollPane());
+		
 	}
 
 	public void paintComponent(Graphics g) {
