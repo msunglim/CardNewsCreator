@@ -20,6 +20,7 @@ public class ScrollPanel extends JPanel {
 
 	public ScrollPanel() {
 
+		
 		setPreferredSize(new Dimension(500, 500));
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -43,7 +44,7 @@ public class ScrollPanel extends JPanel {
 	public void addCardNews() {
 
 		CardNews cn = new CardNews();
-
+		
 		add(cn);
 
 		list.add(cn);
@@ -65,7 +66,7 @@ public class ScrollPanel extends JPanel {
 	public void removeCardNews() {
 		
 		if(list.size()<=0) {
-		System.out.println("impossible");
+//		System.out.println("impossible");
 			return;
 		}
 		remove(curr);
@@ -88,7 +89,9 @@ public class ScrollPanel extends JPanel {
 			
 		}
 
-		System.out.println(list.size());
+//		System.out.println(list.size());
+
+		
 		
 		
 		moveScrollBar(-500);
@@ -99,7 +102,9 @@ public class ScrollPanel extends JPanel {
 		setPreferredSize(new Dimension(getWidth()+newWidth, 500));
 		
 	
-		sb.setValue(sb.getMaximum() - 1280 - newWidth);
+		sb.setValue(getWidth() - 1280 - newWidth);
+		System.out.println(sb.getValue());
+		
 		//System.out.println(sb.getMaximum());
 		revalidate();
 		repaint();

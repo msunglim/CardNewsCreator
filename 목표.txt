@@ -36,3 +36,31 @@ frame이 켜지기전에는 세팅한 크기가 뭐든 크기는 0이다.
 				}
             }
 		});
+
+
+interface를 쓰는이유. 규격을 만들기 위해서도 있지만, default method를 사용한다면, 같은 동작을 하는 기능을 아랫것들에게 선사할수있어. 
+interface a {
+	default sayhi(){ system.out.println("hi")}
+}하면 그하위  class a implements a { 안에서  sayhi() 로 쓸 수 있어.
+
+static method도있는데, a.staticMethodName() 이렇게 바로 a를 이용해서 사용하는거임.
+
+자바스윙에서 key input을 받고싶다면 , keylistner이딴거쓰지말고 getinputmap을 써라.
+그리고 페널들 여러개 쓰면, 이거 인식못할 수 도 있거든? 그럴때
+Action task = new AbstractAction() {
+		    public void actionPerformed(ActionEvent e) {
+		        //do nothing
+		    	System.out.println("?");
+		    }
+		};
+		component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"),
+                "doSomething");
+		component.getActionMap().put("doSomething",
+				 new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	System.exit(0);
+            }
+		}); 이렇게써라. 단, 이것은 특정키에만 대응하게 되어있다..
+
+

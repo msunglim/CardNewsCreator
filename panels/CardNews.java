@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CardNews extends JPanel {
+public class CardNews extends JPanel{
 
 	public CardNews() {
 
@@ -23,7 +23,7 @@ public class CardNews extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
 				ScrollPanel.setCurrentCardNews(CardNews.this);
-				System.out.println(id);
+//				System.out.println(id);
 			}
 		});
 

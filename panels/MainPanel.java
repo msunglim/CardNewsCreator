@@ -11,15 +11,18 @@ import javax.swing.JPanel;
 
 import capture.Capture;
 import capture.Save;
+import lib.KeyClose;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends JPanel implements KeyClose {
 
 	private BufferedImage img;
 
 	int x = 0;
 
-	public MainPanel() {
-
+	public MainPanel()  {
+		
+		setKeyListener(this);
+		
 		setPreferredSize(new Dimension(1280, 720));
 
 		JButton saveButton = new JButton("Save");
@@ -59,7 +62,6 @@ public class MainPanel extends JPanel {
 		});
 		
 
-		
 	}
 
 	public void paintComponent(Graphics g) {
