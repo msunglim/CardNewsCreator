@@ -17,30 +17,32 @@ public class MainPanel extends JPanel implements KeyClose {
 
 	private BufferedImage img;
 
-	int x = 0;
+	private ScrollPanel sp;
 
-	public MainPanel()  {
-		
+	public MainPanel() {
+
 		setKeyListener(this);
-		
+
 		setPreferredSize(new Dimension(1280, 720));
 
-		JButton saveButton = new JButton("Save");
+		JButton saveButton = new JButton("S");
 		JButton addCardButton = new JButton("+");
-		JButton removeCardButton = new JButton("Remove Curr");
+		JButton removeCardButton = new JButton("-");
 		add(saveButton);
 		add(addCardButton);
 		add(removeCardButton);
 
-		ScrollPanel sp = new ScrollPanel();
+		sp = new ScrollPanel();
 		add(sp.getScrollPane());
-		
+
 		saveButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				Capture ct = new Capture(MainPanel.this);
-				img = ct.getScreenshot();
-				Save s = new Save(img);
+				if (sp.getCurrCardNews() != null) {
+					Capture ct = new Capture(sp.getCurrCardNews());
+					img = ct.getScreenshot();
+					Save s = new Save(img);
+				}
 
 			}
 		});
@@ -49,18 +51,20 @@ public class MainPanel extends JPanel implements KeyClose {
 
 			public void actionPerformed(ActionEvent e) {
 				sp.addCardNews();
-				
+
 			}
 		});
-		
+
 		removeCardButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				sp.removeCardNews();
-				
+
 			}
 		});
-		
+
+		CardNewsEditor cep = new CardNewsEditor(sp);
+		add(cep);
 
 	}
 
@@ -68,4 +72,5 @@ public class MainPanel extends JPanel implements KeyClose {
 		super.paintComponent(g);
 
 	}
+
 }

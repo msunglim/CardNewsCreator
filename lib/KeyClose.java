@@ -16,7 +16,7 @@ public interface KeyClose {
 				System.out.println("?");
 			}
 		};
-		component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"),
+		component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("Q"),
 				"doSomething");
 		component.getActionMap().put("doSomething", new AbstractAction() {
 			@Override
