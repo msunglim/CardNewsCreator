@@ -60,7 +60,7 @@ public class CardNewsEditor extends JPanel {
 		});
 
 		JTextField tf = new JTextField(50);
-		TextInputPanel tip = new TextInputPanel(this, tf);
+		TextInputPanel tip = new TextInputPanel(sp, tf);
 //		tf.addMouseListener(new MouseAdapter() {
 //			public void mouseReleased(MouseEvent e) {
 //				System.out.println(e);
@@ -70,10 +70,8 @@ public class CardNewsEditor extends JPanel {
 
 //		JScrollPane jsptf = new JScrollPane(tf);
 
-		
 		addTextButton.addActionListener(new ActionListener() {
 
-			
 			public void actionPerformed(ActionEvent e) {
 
 				CardNews curr = sp.getCurrCardNews();
@@ -81,7 +79,7 @@ public class CardNewsEditor extends JPanel {
 
 					if (java.util.Arrays.asList(getComponents()).contains(tip)) {
 						remove(tip);
-						
+
 					} else {
 
 						add(tip, BorderLayout.SOUTH);

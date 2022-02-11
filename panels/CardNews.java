@@ -135,6 +135,9 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 		repaint();
 		revalidate();
 	}
+	public String getText() {
+		return text.getText();
+	}
 
 	public void setFontSize(int size) {
 		this.text.setFont(new Font(fontName, 1, fontSize + size));
