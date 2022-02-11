@@ -77,7 +77,7 @@ public class ScrollPanel extends JPanel {
 		} else {
 			int index = list.indexOf(curr);
 			list.remove(curr);
-			System.out.println("index" + index);
+//			System.out.println("index" + index);
 
 			if (index == 0) {
 
@@ -103,7 +103,7 @@ public class ScrollPanel extends JPanel {
 		setPreferredSize(new Dimension(getWidth() + newWidth, 500));
 	
 		if (newWidth > 0) {
-			sb.setValue(getWidth() - 1280 - newWidth);
+			sb.setValue(getWidth() - 780 - newWidth);
 		} else {
 	
 			//250 is mercy. dont use getWidth() instead of 1280

@@ -35,6 +35,7 @@ public class MainPanel extends JPanel implements KeyClose {
 		sp = new ScrollPanel();
 		add(sp.getScrollPane());
 
+		sp.addCardNews();
 		saveButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {

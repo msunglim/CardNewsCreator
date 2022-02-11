@@ -64,3 +64,27 @@ Action task = new AbstractAction() {
 		}); 이렇게써라. 단, 이것은 특정키에만 대응하게 되어있다..
 
 
+스페셜케릭터 *-+/는 반드시 modifier가 있어야한다. 컨트롤이든 알트든 시프트든.
+
+
+이번에는 interface를 많이만들었다. 나중에 다른 프로젝트할때 가져다쓰자
+
+-입력택스트를 먼저 쳐놓고 t를 누르면 그걸 add하자. 그리고 z를 누르면 이제 이미지랑 text랑 위치조정하는게 바뀌는거임. 그것도 화면ㅇ ㅓ딘가에 표시하자. 
+ㄴ cardnews의 layout을 null로해놓고, add할떄 위치를 정해놓고하게해야한다
+ㄴ 특정길이이상이면, 자동줄바꿈을 적용하자. 그리고 엔터치면 포커스사라지게. 다시 tf를 클릭했을때 또는 생성되었을때 포커스를 주자.
+ㄴ new Font(fontName, fontType, fontSize) 인갑다.
+ㄴJLabel에서 html테그를 달아노면 <br/> 한글이 인식이된다 br을 안에써서 엔터가능
+ㄴ 폰트설정 itembox, 색깔을 파레트같은거 옆에한켠에 둬서 그걸로할까? 아니면 control r, control b 이런걸로 색을 설정할 수 있게할까? 그게 숙원이었잖아. 대신 글전체가 영향을 받을 텐데;
+ㄴtextfield에서 dragged (highlighted) text를 케이크처럼 쉽게 얻는법
+	JTextField tf = new JTextField(50);
+		tf.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				System.out.println(e);
+				System.out.println(tf.getSelectedText());
+			}
+		});
+
+
+textarea보다는 textfield를 이용하자
+
+갑자기 궁금해진건데, 있으면 지우고 없으면 넣는건 toggleClass 임.. 자바스크립트긴함.
