@@ -86,7 +86,6 @@ public class CardNewsEditor extends JPanel {
 					}
 					repaint();
 					revalidate();
-					// curr.setText("aaaa");
 
 				}
 
@@ -98,7 +97,9 @@ public class CardNewsEditor extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("enter");
-				sp.getCurrCardNews().setText(tf.getText());
+				
+				tip.setCurrText();
+				
 				remove(tip);
 				repaint();
 				revalidate();

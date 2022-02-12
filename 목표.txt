@@ -84,7 +84,12 @@ Action task = new AbstractAction() {
 			}
 		});
 
+ㄴ 엔터를 쳤을때는 html이 무효화되고 새로 tf에서 text를 받기에 전에있떤 설정들이 사라져. 하지만 구분하지않고 옛날 html을 그대로쓰면, 새로추가하고 엔터치면 그게 반영이안돼. 해결법은 글자를 타이핑할때마다 list에 넣어놓고 나중에 enter할때 이미 있는 list값을 참조해서 해야하나? keytype은 addLIstenre로 해결할 수 있을것같다.
 
 textarea보다는 textfield를 이용하자
 
 갑자기 궁금해진건데, 있으면 지우고 없으면 넣는건 toggleClass 임.. 자바스크립트긴함.
+
+필요 
+ur: 30 * 10 = 300
+sr:

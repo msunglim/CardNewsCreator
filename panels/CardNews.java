@@ -108,18 +108,19 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 	}
 
 	public void setText(String text) {
-		int index = text.length() / 20;
-		String tmp = "<html>";
-		for (int i = 0; i < index; i++) {
-			tmp += text.substring(i * 20, 20 * (i + 1)) + "<br/>";
-		}
-		if (index * 20 <= text.length()) {
-//			System.out.println("??");
-			tmp += text.substring(index * 20, text.length());
-		}
-		tmp += "</html>";
-		String t = "<html>" + text + " </html>";
-		this.text.setText(t);
+//		int index = text.length() / 20;
+//		String tmp = "<html>";
+//		for (int i = 0; i < index; i++) {
+//			tmp += text.substring(i * 20, 20 * (i + 1)) + "<br/>";
+//		}
+//		if (index * 20 <= text.length()) {
+////			System.out.println("??");
+//			tmp += text.substring(index * 20, text.length());
+//		}
+//		tmp += "</html>";
+	//	String t = "<html>" + text + " </html>";
+//		
+		this.text.setText(text);
 		this.text.setFont(new Font(fontName, 1, fontSize));
 
 		
