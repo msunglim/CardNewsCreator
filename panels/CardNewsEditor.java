@@ -16,8 +16,10 @@ import lib.FileUpload;
 
 public class CardNewsEditor extends JPanel {
 
+	private static JTextField tf;
+	private static ScrollPanel sp;
 	public CardNewsEditor(ScrollPanel sp) {
-
+		this.sp = sp;
 		setLayout(new BorderLayout());
 		JButton addBackgroundButton = new JButton("B");
 		JButton addImageButton = new JButton("I");
@@ -59,16 +61,9 @@ public class CardNewsEditor extends JPanel {
 			}
 		});
 
-		JTextField tf = new JTextField(50);
+		tf = new JTextField(50);
 		TextInputPanel tip = new TextInputPanel(sp, tf);
-//		tf.addMouseListener(new MouseAdapter() {
-//			public void mouseReleased(MouseEvent e) {
-//				System.out.println(e);
-//				System.out.println(tf.getSelectedText());
-//			}
-//		});
 
-//		JScrollPane jsptf = new JScrollPane(tf);
 
 		addTextButton.addActionListener(new ActionListener() {
 
@@ -77,13 +72,13 @@ public class CardNewsEditor extends JPanel {
 				CardNews curr = sp.getCurrCardNews();
 				if (curr != null) {
 
-					if (java.util.Arrays.asList(getComponents()).contains(tip)) {
-						remove(tip);
-
-					} else {
+//					if (java.util.Arrays.asList(getComponents()).contains(tip)) {
+//						remove(tip);
+//
+//					} else {
 
 						add(tip, BorderLayout.SOUTH);
-					}
+//					}
 					repaint();
 					revalidate();
 
@@ -100,7 +95,7 @@ public class CardNewsEditor extends JPanel {
 				
 				tip.setCurrText();
 				
-				remove(tip);
+//				remove(tip);
 				repaint();
 				revalidate();
 
@@ -108,4 +103,7 @@ public class CardNewsEditor extends JPanel {
 		});
 	}
 
+	public static void refreshTF() {
+		tf.setText(sp.getCurrCardNews().getContent());
+	}
 }

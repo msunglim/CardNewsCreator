@@ -84,7 +84,10 @@ Action task = new AbstractAction() {
 			}
 		});
 
-ㄴ 엔터를 쳤을때는 html이 무효화되고 새로 tf에서 text를 받기에 전에있떤 설정들이 사라져. 하지만 구분하지않고 옛날 html을 그대로쓰면, 새로추가하고 엔터치면 그게 반영이안돼. 해결법은 글자를 타이핑할때마다 list에 넣어놓고 나중에 enter할때 이미 있는 list값을 참조해서 해야하나? keytype은 addLIstenre로 해결할 수 있을것같다.
+ㄴ하이라이트 친거에 html코드 넣는법은 블로그에 올려놨다.(https://blog.naver.com/gtmim30/222646084303) . 일단 마우스 드래그를 인식하는법. s0와 s1를 드래그된 영역의 좌표로 저장한다.. 그 정보들을 이용해 LinkedList list에 한글자식 저장하되, 처음과 끝은 <html> </html>로 장식해주고, 처음에 <html>로 한칸 먹고시작하니까 그것에 맞게 string 을 한글자씩 담을때에는 +1인 상태로해주고 i 가 s0나 s1과 일치할때는 그것에 맞는 조치를 취해준다.
+ㄴ앞에서 지우면 s0 s1을 하나씩 감소시키고 
+ㄴ커서(caret)위치 textfield에서 int caret = tf.getCaretPosition();
+ㄴㅅㅂ 이런거하면머함? 한글이 타자하나당 한칸이아닌데.. 
 
 textarea보다는 textfield를 이용하자
 
@@ -93,3 +96,6 @@ textarea보다는 textfield를 이용하자
 필요 
 ur: 30 * 10 = 300
 sr:
+
+4000
+2000

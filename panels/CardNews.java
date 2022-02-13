@@ -23,12 +23,15 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 	private int imgX, imgY;
 
 	private JLabel text;
+	private String content; // content of text
 
 	final int width = 500, height = 500;
 
 	private String fontName;
 	private int fontSize;
 	private boolean editImage;
+
+	private int s0, s1;
 
 	public CardNews() {
 
@@ -60,6 +63,7 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 			public void mousePressed(MouseEvent me) {
 				ScrollPanel.setCurrentCardNews(CardNews.this);
 //				System.out.println(id);
+				CardNewsEditor.refreshTF();
 			}
 		});
 
@@ -118,13 +122,11 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 //			tmp += text.substring(index * 20, text.length());
 //		}
 //		tmp += "</html>";
-	//	String t = "<html>" + text + " </html>";
+		// String t = "<html>" + text + " </html>";
 //		
 		this.text.setText(text);
 		this.text.setFont(new Font(fontName, 1, fontSize));
 
-		
-		
 		// // this.text.setBounds(0,0,text.length()*10,text.length()*10);
 ////		System.out.println(tmp);
 //		
@@ -136,6 +138,7 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 		repaint();
 		revalidate();
 	}
+
 	public String getText() {
 		return text.getText();
 	}
@@ -191,5 +194,32 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 
 	public void setEditImage(boolean tf) {
 		editImage = tf;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String s) {
+		content = s;
+		if(s =="") {
+			setColoredArea(0,0);
+		}
+	}
+
+	public void setColoredArea(int s0, int s1) {
+		if (s0 >= 0) {
+			this.s0 = s0;
+
+		}
+		if (s1 >= 0) {
+			this.s1 = s1;
+
+		}
+	}
+
+	public int[] getColoredArea() {
+		int[] ca = { s0, s1 };
+		return ca;
 	}
 }

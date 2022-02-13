@@ -52,6 +52,7 @@ public class MainPanel extends JPanel implements KeyClose {
 
 			public void actionPerformed(ActionEvent e) {
 				sp.addCardNews();
+				CardNewsEditor.refreshTF();
 
 			}
 		});
