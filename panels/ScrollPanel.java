@@ -43,12 +43,13 @@ public class ScrollPanel extends JPanel {
 	public void addCardNews() {
 
 		CardNews cn = new CardNews();
-
+		cn.setFontSize(20);
+		
 		add(cn);
 
 		list.add(cn);
 		curr = cn;
-		System.out.println(curr);
+//		System.out.println(curr);
 		
 		//before it is visible (repaint), width is 0. therefore i just use the fixed number
 		moveScrollBar(500);
@@ -117,5 +118,7 @@ public class ScrollPanel extends JPanel {
 	public CardNews getCurrCardNews() {
 		return curr;
 	}
+	
 
+	
 }

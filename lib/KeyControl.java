@@ -8,20 +8,27 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import panels.CardNews;
+import panels.CardNewsEditor;
+import panels.ScrollPanel;
 
 public interface KeyControl {
 
-	default void setKeyListener(CardNews component) {
+	default void setKeyListener(CardNewsEditor component,ScrollPanel sp) {
 
+		
 		component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "up");
 		component.getActionMap().put("up", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				System.out.println("up");
-				if (component.getEditImage()) {
-					component.setImageY(component.getImageY() - 10);
+				CardNews curr = sp.getCurrCardNews();
+				System.out.println("curr"+ curr.getContent());
+
+				System.out.println("sp"+ sp.getCurrCardNews().getContent());				
+				if (curr.getEditImage()) {
+
+					curr.setImageY(curr.getImageY() - 10);
 				} else {
-					component.setTextY(-10);
+					curr.setTextY(-10);
 				}
 
 			}
@@ -31,11 +38,12 @@ public interface KeyControl {
 		component.getActionMap().put("down", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				System.out.println("down");
-				if (component.getEditImage()) {
-					component.setImageY(component.getImageY() + 10);
+				CardNews curr = sp.getCurrCardNews();
+				//				System.out.println("down");
+				if (curr.getEditImage()) {
+					curr.setImageY(curr.getImageY() + 10);
 				} else {
-					component.setTextY(10);
+					curr.setTextY(10);
 				}
 
 			}
@@ -45,11 +53,12 @@ public interface KeyControl {
 		component.getActionMap().put("left", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CardNews curr = sp.getCurrCardNews();
 //				System.out.println("left");
-				if (component.getEditImage()) {
-					component.setImageX(component.getImageX() - 10);
+				if (curr.getEditImage()) {
+					curr.setImageX(curr.getImageX() - 10);
 				} else {
-					component.setTextX(-10);
+					curr.setTextX(-10);
 				}
 
 			}
@@ -59,12 +68,13 @@ public interface KeyControl {
 		component.getActionMap().put("right", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CardNews curr = sp.getCurrCardNews();
 //				System.out.println("right");
-				if (component.getEditImage()) {
-					component.setImageX(component.getImageX() + 10);
+				if (curr.getEditImage()) {
+					curr.setImageX(curr.getImageX() + 10);
 				} else {
 //					System.out.println("??zz");
-					component.setTextX(10);
+					curr.setTextX(10);
 				}
 			}
 		});
@@ -74,10 +84,11 @@ public interface KeyControl {
 		component.getActionMap().put("expand", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (component.getEditImage()) {
-					component.resize(5);
+				CardNews curr = sp.getCurrCardNews();
+				if (curr.getEditImage()) {
+					curr.resize(5);
 				} else {
-					component.setFontSize(5);
+					curr.setFontSize(5);
 				}
 			}
 		});
@@ -86,11 +97,12 @@ public interface KeyControl {
 		component.getActionMap().put("shrink", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CardNews curr = sp.getCurrCardNews();
 //				System.out.println("right");
-				if (component.getEditImage()) {
-					component.resize(-5);
+				if (curr.getEditImage()) {
+					curr.resize(-5);
 				} else {
-					component.setFontSize(-5);
+					curr.setFontSize(-5);
 				}
 			}
 		});
@@ -100,9 +112,10 @@ public interface KeyControl {
 		component.getActionMap().put("editAnother", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CardNews curr = sp.getCurrCardNews();
 				// System.out.println("edit");
 
-				component.setEditImage(!component.getEditImage());
+				curr.setEditImage(!curr.getEditImage());
 			}
 		});
 

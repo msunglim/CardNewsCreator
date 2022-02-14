@@ -14,9 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import lib.ImageResize;
-import lib.KeyControl;
 
-public class CardNews extends JPanel implements KeyControl, ImageResize {
+public class CardNews extends JPanel implements ImageResize {
 
 	private BufferedImage background;
 	private BufferedImage img;
@@ -28,6 +27,8 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 	final int width = 500, height = 500;
 
 	private String fontName;
+
+	private String fontColor;
 	private int fontSize;
 	private boolean editImage;
 
@@ -35,12 +36,13 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 
 	public CardNews() {
 
-		setKeyListener(this);
+//		setKeyListener(this);
 		setPreferredSize(new Dimension(width, height));
 
 		setBorder(BorderFactory.createLineBorder(Color.black));
+		setBackground(Color.WHITE);
 		setLayout(null);
-
+		fontColor = "red";
 //		String id = "" + System.currentTimeMillis();
 //		JLabel l = new JLabel(id);
 //	
@@ -54,15 +56,18 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 		editImage = true;
 
 		this.text = new JLabel();
-		fontName = "Verdana";
-		fontSize = 20;
+//		fontName = "휴먼매직체";
+//		fontSize = 20;
+
 		text.setBounds(0, 0, 500, 500);
 		add(this.text);
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
 				ScrollPanel.setCurrentCardNews(CardNews.this);
-//				System.out.println(id);
+
+//				setKeyListener(CardNews.this);
+				setFocusable(true);
 				CardNewsEditor.refreshTF();
 			}
 		});
@@ -77,6 +82,14 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 
 		repaint();
 		revalidate();
+	}
+
+	public String getFontColor() {
+		return fontColor;
+	}
+
+	public void setFontColor(String c) {
+		fontColor = c;
 	}
 
 	public void setBackgroundImage(BufferedImage img) {
@@ -112,29 +125,10 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 	}
 
 	public void setText(String text) {
-//		int index = text.length() / 20;
-//		String tmp = "<html>";
-//		for (int i = 0; i < index; i++) {
-//			tmp += text.substring(i * 20, 20 * (i + 1)) + "<br/>";
-//		}
-//		if (index * 20 <= text.length()) {
-////			System.out.println("??");
-//			tmp += text.substring(index * 20, text.length());
-//		}
-//		tmp += "</html>";
-		// String t = "<html>" + text + " </html>";
-//		
+
 		this.text.setText(text);
 		this.text.setFont(new Font(fontName, 1, fontSize));
 
-		// // this.text.setBounds(0,0,text.length()*10,text.length()*10);
-////		System.out.println(tmp);
-//		
-//		String tt = "<html><font color='red'>" + text + "</font></html>";
-//		JLabel j = new JLabel(tt);
-//		j.setFont(new Font(fontName, 1, fontSize+5));
-//		j.setBounds(this.text.getX(), this.text.getY(), 500,500);
-//		add(j);
 		repaint();
 		revalidate();
 	}
@@ -144,8 +138,10 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 	}
 
 	public void setFontSize(int size) {
+
 		this.text.setFont(new Font(fontName, 1, fontSize + size));
 		fontSize += size;
+
 	}
 
 	public int getTextX() {
@@ -155,17 +151,18 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 
 	public int getTextY() {
 		return text.getY();
+
 	}
 
 	public void setTextX(int x) {
-//		System.out.println("tex"+text.getX());
-//		setLayout(null);
+
 		text.setBounds(text.getX() + x, text.getY(), text.getWidth(), text.getHeight());
 		repaint();
 		revalidate();
 	}
 
 	public void setTextY(int y) {
+
 		text.setBounds(text.getX(), text.getY() + y, text.getWidth(), text.getHeight());
 		repaint();
 		revalidate();
@@ -202,8 +199,8 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 
 	public void setContent(String s) {
 		content = s;
-		if(s =="") {
-			setColoredArea(0,0);
+		if (s == "") {
+			setColoredArea(0, 0);
 		}
 	}
 
@@ -222,4 +219,21 @@ public class CardNews extends JPanel implements KeyControl, ImageResize {
 		int[] ca = { s0, s1 };
 		return ca;
 	}
+
+	public void setFont(String newFont) {
+		fontName = newFont;
+		this.text.setFont(new Font(fontName, 1, fontSize));
+
+		repaint();
+		revalidate();
+	}
+
+	public void fontSize(int size) {
+		fontSize = size;
+	}
+
+	public int getFontSize() {
+		return fontSize;
+	}
+
 }

@@ -13,11 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import lib.FileUpload;
+import lib.KeyControl;
 
-public class CardNewsEditor extends JPanel {
+public class CardNewsEditor extends JPanel implements KeyControl{
 
 	private static JTextField tf;
 	private static ScrollPanel sp;
+	private static TextInputPanel tip;
+
 	public CardNewsEditor(ScrollPanel sp) {
 		this.sp = sp;
 		setLayout(new BorderLayout());
@@ -29,7 +32,7 @@ public class CardNewsEditor extends JPanel {
 		buttonPanel.add(addImageButton);
 		buttonPanel.add(addTextButton);
 
-		add(buttonPanel, BorderLayout.CENTER);
+		add(buttonPanel, BorderLayout.NORTH);
 		addBackgroundButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -61,28 +64,21 @@ public class CardNewsEditor extends JPanel {
 			}
 		});
 
-		tf = new JTextField(50);
-		TextInputPanel tip = new TextInputPanel(sp, tf);
+		tf = new JTextField();
+		tip = new TextInputPanel(sp, tf);
 
-
+		add(tip, BorderLayout.SOUTH);
 		addTextButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				CardNews curr = sp.getCurrCardNews();
-				if (curr != null) {
-
-//					if (java.util.Arrays.asList(getComponents()).contains(tip)) {
-//						remove(tip);
+//				CardNews curr = sp.getCurrCardNews();
+//				if (curr != null) {
 //
-//					} else {
-
-						add(tip, BorderLayout.SOUTH);
-//					}
-					repaint();
-					revalidate();
-
-				}
+//					repaint();
+//					revalidate();
+//
+//				}
 
 			}
 		});
@@ -92,18 +88,27 @@ public class CardNewsEditor extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("enter");
-				
-				tip.setCurrText();
-				
+
+				tip.setCurrText(sp.getCurrCardNews());
+
 //				remove(tip);
 				repaint();
 				revalidate();
 
 			}
 		});
+		
+		setKeyListener(this,sp);
+		
+		FontBox comboPanel = new FontBox(sp);
+		add(comboPanel,BorderLayout.CENTER);
 	}
 
 	public static void refreshTF() {
 		tf.setText(sp.getCurrCardNews().getContent());
+	}
+	
+	public static TextInputPanel getTip() {
+		return tip;
 	}
 }

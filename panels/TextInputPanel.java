@@ -1,5 +1,7 @@
 package panels;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -15,11 +17,17 @@ public class TextInputPanel extends JScrollPane {
 	private String html;
 	private ScrollPanel sp;
 	private JTextField tf;
+	private int fontTagIndex;
+//	private String fontColor;
 
 	public TextInputPanel(ScrollPanel sp, JTextField tf) {
 		super(tf);
 		this.sp = sp;
 		this.tf = tf;
+		fontTagIndex = 0;
+//		fontColor = "red";
+		tf.setPreferredSize(new Dimension(1200, 100));
+		tf.setFont(new Font("Helvetica", 1, 30));
 //		 CardNews curr = sp.getCurrCardNews();
 //		setList("");
 
@@ -35,42 +43,44 @@ public class TextInputPanel extends JScrollPane {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-
-				setCurrText();
 				CardNews curr = sp.getCurrCardNews();
+				
+				setCurrText(curr);
+				if (curr != null) {
 //				System.out.println("index:"+tf.getCaretPosition());
-				int caret = tf.getCaretPosition();
-				int s0 = curr.getColoredArea()[0];
-				int s1 = curr.getColoredArea()[1];
+					int caret = tf.getCaretPosition();
+					int s0 = curr.getColoredArea()[0];
+					int s1 = curr.getColoredArea()[1];
 //				System.out.println("key:"+ e.getKeyCode());
 
-				int inputKey = e.getKeyCode();
-				if (inputKey == KeyEvent.VK_BACK_SPACE) {
-					System.out.println("caret:" + caret);
-					if (caret <= s0) {
-						curr.setColoredArea(s0 - 1, s1 - 1);
-					} else if (caret > s0 && caret <= s1) {
-						curr.setColoredArea(s0, s1 - 1);
+					int inputKey = e.getKeyCode();
+					if (inputKey == KeyEvent.VK_BACK_SPACE) {
+//						System.out.println("caret:" + caret);
+						if (caret <= s0) {
+							curr.setColoredArea(s0 - 1, s1 - 1);
+						} else if (caret > s0 && caret <= s1) {
+							curr.setColoredArea(s0, s1 - 1);
+
+						}
+
+					} else if (inputKey != KeyEvent.VK_CAPS_LOCK && inputKey != KeyEvent.VK_SHIFT
+							&& inputKey != KeyEvent.VK_CONTROL && inputKey != KeyEvent.VK_ENTER
+							&& inputKey != KeyEvent.VK_UP && inputKey != KeyEvent.VK_DOWN
+							&& inputKey != KeyEvent.VK_RIGHT && inputKey != KeyEvent.VK_LEFT) {
+//						System.out.println("Input");
+						if (caret <= s0) {
+							curr.setColoredArea(s0 + 1, s1 + 1);
+						} else if (caret > s0 && caret <= s1) {
+							curr.setColoredArea(s0, s1 + 1);
+
+						}
 
 					}
-
-				} else if (inputKey != KeyEvent.VK_CAPS_LOCK && inputKey != KeyEvent.VK_SHIFT
-						&& inputKey != KeyEvent.VK_SPACE && inputKey != KeyEvent.VK_CONTROL
-						&& inputKey != KeyEvent.VK_ENTER && inputKey != KeyEvent.VK_UP && inputKey != KeyEvent.VK_DOWN
-						&& inputKey != KeyEvent.VK_RIGHT && inputKey != KeyEvent.VK_LEFT) {
-					System.out.println("Input");
-					if (caret <= s0) {
-						curr.setColoredArea(s0 + 1, s1 + 1);
-					} else if (caret > s0 && caret <= s1) {
-						curr.setColoredArea(s0, s1 + 1);
-
-					}
-
-				}
-				// TODO Auto-generated method stub
+					// TODO Auto-generated method stub
 
 //				System.out.println("enteredKey"+e.getKeyChar());
 
+				}
 			}
 
 			@Override
@@ -93,7 +103,7 @@ public class TextInputPanel extends JScrollPane {
 					int s0 = tf.getSelectionStart();
 					int s1 = tf.getSelectionEnd();
 					curr.setColoredArea(s0, s1);
-					setCurrText();
+					setCurrText(curr);
 //					System.out.println("s0:"+ s0 + ", s1:"+ s1);
 
 				}
@@ -103,39 +113,41 @@ public class TextInputPanel extends JScrollPane {
 
 	}
 
-	public void setCurrText() {
-		CardNews curr = sp.getCurrCardNews();
-
-		list = new LinkedList<>();
-		list.add("<html>");
+	public void setCurrText(CardNews curr) {
+		if (curr != null) {
+			list = new LinkedList<>();
+			list.add("<html>");
 //		list.add(tf.getText());
 
 //		System.out.println("CURRENT s0:"+ s0 + ", s1:"+ s1);
-		int excuse = 0;
-		int s0 = curr.getColoredArea()[0];
+			int excuse = 0;
+			int s0 = curr.getColoredArea()[0];
 
-		int s1 = curr.getColoredArea()[1];
-		System.out.println("s0:" + s0 + ", s1:" + s1);
-		for (int i = 1; i < tf.getText().length() + 1; i++) {
+			int s1 = curr.getColoredArea()[1];
+//			System.out.println("s0:" + s0 + ", s1:" + s1);
+			for (int i = 1; i < tf.getText().length() + 1; i++) {
 
-			if (i == s0 + 1 && s0 != s1) {
-				list.add(i, "<font color='red'>");
-				excuse++;
-				list.add(i + excuse, "" + tf.getText().charAt(i - 1));
+				if (i == s0 + 1 && s0 != s1) {
+					list.add(i, "<font color="+curr.getFontColor()+">");
+					excuse++;
+					fontTagIndex = i;
+//					System.out.println(fontTagIndex);
+					list.add(i + excuse, "" + tf.getText().charAt(i - 1));
 
-			} else if (i == s1 && s0 != s1) {
-				list.add(i + excuse, "" + tf.getText().charAt(i - 1));
-				excuse++;
-				list.add(i + excuse, "</font>");
+				} else if (i == s1 && s0 != s1) {
+					list.add(i + excuse, "" + tf.getText().charAt(i - 1));
+					excuse++;
+					list.add(i + excuse, "</font>");
 
-			} else {
-				list.add(i + excuse, "" + tf.getText().charAt(i - 1));
+				} else {
+					list.add(i + excuse, "" + tf.getText().charAt(i - 1));
+				}
 			}
+			list.add("</html>");
+			curr.setText(getHTMLizedText());
+			curr.setContent(tf.getText());
+//			System.out.println("text:" + tf.getText());
 		}
-		list.add("</html>");
-		curr.setText(getHTMLizedText());
-		curr.setContent(tf.getText());
-		System.out.println("text:" + tf.getText());
 	}
 
 	public String getHTMLizedText() {
@@ -151,5 +163,13 @@ public class TextInputPanel extends JScrollPane {
 
 		return html;
 	}
+//	public void setFontColor(String color) {
+//	
+//		fontColor = color;
+//		System.out.println("color"+ color);
+//		
+//		setCurrText(sp.getCurrCardNews());
+//
+//	}
 
 }
