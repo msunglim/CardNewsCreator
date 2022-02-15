@@ -1,5 +1,6 @@
 package panels;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -23,26 +24,36 @@ public class MainPanel extends JPanel implements KeyClose {
 
 		setKeyListener(this);
 
-		setPreferredSize(new Dimension(1280, 720));
-
+		setPreferredSize(new Dimension(1580, 920));
+		setLayout(new BorderLayout());
+		
 		JButton saveButton = new JButton("S");
 		JButton addCardButton = new JButton("+");
 		JButton removeCardButton = new JButton("-");
-		add(saveButton);
-		add(addCardButton);
-		add(removeCardButton);
+		JPanel btp = new JPanel();
+		
+		btp.add(saveButton);
+		btp.add(addCardButton);
+		btp.add(removeCardButton);
 
+		add(btp, BorderLayout.NORTH);
+		
+		
 		sp = new ScrollPanel();
-		add(sp.getScrollPane());
+		add(sp.getScrollPane(), BorderLayout.CENTER);
 
 		sp.addCardNews();
 		saveButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				if (sp.getCurrCardNews() != null) {
-					Capture ct = new Capture(sp.getCurrCardNews());
-					img = ct.getScreenshot();
-					Save s = new Save(img);
+					
+					for(CardNews c : sp.getAllCardNews()) {
+						Capture ct = new Capture(c);
+						img = ct.getScreenshot();
+						Save s = new Save(img);	
+					}
+					
 				}
 
 			}
@@ -66,7 +77,7 @@ public class MainPanel extends JPanel implements KeyClose {
 		});
 
 		CardNewsEditor cep = new CardNewsEditor(sp);
-		add(cep);
+		add(cep, BorderLayout.SOUTH);
 
 	}
 

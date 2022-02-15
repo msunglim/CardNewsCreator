@@ -2,7 +2,6 @@ package panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
@@ -10,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import lib.ImageResize;
@@ -21,18 +19,17 @@ public class CardNews extends JPanel implements ImageResize {
 	private BufferedImage img;
 	private int imgX, imgY;
 
-	private JLabel text;
-	private String content; // content of text
+	private TextManager mainText, subText;
+//	private JLabel text;
+//	private String content; // content of text
+//	private String fontName;
+//	private String fontColor;
+//	private int fontSize;
+//	private int s0, s1; //highlighted area index
 
 	final int width = 500, height = 500;
 
-	private String fontName;
-
-	private String fontColor;
-	private int fontSize;
 	private boolean editImage;
-
-	private int s0, s1;
 
 	public CardNews() {
 
@@ -42,7 +39,7 @@ public class CardNews extends JPanel implements ImageResize {
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setBackground(Color.WHITE);
 		setLayout(null);
-		fontColor = "red";
+
 //		String id = "" + System.currentTimeMillis();
 //		JLabel l = new JLabel(id);
 //	
@@ -55,12 +52,16 @@ public class CardNews extends JPanel implements ImageResize {
 		// edit image is default value (use arrows/ +- keys)
 		editImage = true;
 
-		this.text = new JLabel();
+//		fontColor = "red";
+//		this.text = new JLabel();
 //		fontName = "휴먼매직체";
 //		fontSize = 20;
 
-		text.setBounds(0, 0, 500, 500);
-		add(this.text);
+		mainText = new TextManager();
+		subText = new TextManager();
+		
+		add(mainText.getTextLabel());
+		add(subText.getTextLabel());
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
@@ -83,32 +84,41 @@ public class CardNews extends JPanel implements ImageResize {
 		repaint();
 		revalidate();
 	}
-
-	public String getFontColor() {
-		return fontColor;
+	public TextManager getMainTextManager() {
+		return mainText;
 	}
-
-	public void setFontColor(String c) {
-		fontColor = c;
+	public TextManager getSubTextManager() {
+		return subText;
 	}
 
 	public void setBackgroundImage(BufferedImage img) {
 
-		BufferedImage dimg = new BufferedImage(width, height, img.getType());
-		Graphics2D g = dimg.createGraphics();
+		if (img != null) {
 
-		g.drawImage(img, 0, 0, width, height, 0, 0, img.getWidth(), img.getHeight(), null);
-		g.dispose();
-		background = dimg;
+			BufferedImage dimg = new BufferedImage(width, height, img.getType());
+			Graphics2D g = dimg.createGraphics();
 
+			g.drawImage(img, 0, 0, width, height, 0, 0, img.getWidth(), img.getHeight(), null);
+			g.dispose();
+
+			background = dimg;
+
+		} else {
+			background = null;
+		}
 	}
 
 	public void setImage(BufferedImage img) {
-		int newW = width / 2;
-		int newH = height / 2;
+		if (img != null) {
 
-		this.img = resizeImage(img, newW, newH);
+			int newW = width / 2;
+			int newH = height / 2;
 
+			this.img = resizeImage(img, newW, newH);
+
+		} else {
+			this.img = null;
+		}
 	}
 
 	public void resize(int size) {
@@ -124,49 +134,104 @@ public class CardNews extends JPanel implements ImageResize {
 		img = resizeImage(img, newW, newH);
 	}
 
-	public void setText(String text) {
+	public String getFontColor(TextManager tm) {
+		return tm.getFontColor();
+	}
 
-		this.text.setText(text);
-		this.text.setFont(new Font(fontName, 1, fontSize));
+	public void setFontColor(TextManager tm, String c) {
+//		fontColor = c;
+		tm.setFontColor(c);
+	}
+
+	public void setText(TextManager tm, String text) {
+
+		tm.setText(text);
+		// tm.setFontLabel(new Font(tm.getFontName(), 1, tm.getFontSize()));
 
 		repaint();
 		revalidate();
 	}
 
-	public String getText() {
-		return text.getText();
+	public String getText(TextManager tm) {
+		return tm.getText();
 	}
 
-	public void setFontSize(int size) {
+	public void setFontSize(TextManager tm, int size) {
 
-		this.text.setFont(new Font(fontName, 1, fontSize + size));
-		fontSize += size;
-
-	}
-
-	public int getTextX() {
-		return text.getX();
+		tm.setFontSize(size);
+//		this.text.setFont(new Font(fontName, 1, fontSize + size));
+//		fontSize += size;
 
 	}
 
-	public int getTextY() {
-		return text.getY();
+	public int getTextX(TextManager tm) {
+		return tm.getTextX();
 
 	}
 
-	public void setTextX(int x) {
+	public int getTextY(TextManager tm) {
+		return tm.getTextY();
 
-		text.setBounds(text.getX() + x, text.getY(), text.getWidth(), text.getHeight());
+	}
+
+	public void setTextX(TextManager tm,int x) {
+		tm.setTextX(x);
+//		text.setBounds(text.getX() + x, text.getY(), text.getWidth(), text.getHeight());
 		repaint();
 		revalidate();
 	}
 
-	public void setTextY(int y) {
+	public void setTextY(TextManager tm,int y) {
 
-		text.setBounds(text.getX(), text.getY() + y, text.getWidth(), text.getHeight());
+		tm.setTextY(y);
+		
+//		text.setBounds(text.getX(), text.getY() + y, text.getWidth(), text.getHeight());
 		repaint();
 		revalidate();
 
+	}
+
+	public String getContent(TextManager tm) {
+		return tm.getContent();
+	}
+
+	public void setContent(TextManager tm,String s) {
+//		content = s;
+		tm.setContent(s);
+		if (s == "") {
+			tm.setColoredArea(0, 0);
+		}
+	}
+
+	public void setColoredArea(TextManager tm, int s0, int s1) {
+		tm.setColoredArea(s0, s1);
+	}
+
+	public int[] getColoredArea(TextManager tm) {
+//		int[] ca = { s0, s1 };
+		return tm.getColoredArea();
+	}
+
+	public void setFontLabel(TextManager tm, String newFont) {
+//		fontName = newFont;
+//		this.text.setFont(new Font(fontName, 1, fontSize));
+
+		tm.setFontLabel(newFont);
+		repaint();
+		revalidate();
+	}
+
+	public String getFontName(TextManager tm) {
+		return tm.getFontName();
+	}
+
+	public void fontSize(TextManager tm,int size) {
+//		fontSize = size;
+		tm.setFontSize(size);
+	}
+
+	public int getFontSize(TextManager tm) {
+		return tm.getFontSize();
 	}
 
 	public void setImageX(int x) {
@@ -175,6 +240,10 @@ public class CardNews extends JPanel implements ImageResize {
 
 	public void setImageY(int y) {
 		imgY = y;
+	}
+
+	public BufferedImage getImage() {
+		return img;
 	}
 
 	public int getImageX() {
@@ -193,50 +262,7 @@ public class CardNews extends JPanel implements ImageResize {
 		editImage = tf;
 	}
 
-	public String getContent() {
-		return content;
+	public BufferedImage getBackgroundImage() {
+		return background;
 	}
-
-	public void setContent(String s) {
-		content = s;
-		if (s == "") {
-			setColoredArea(0, 0);
-		}
-	}
-
-	public void setColoredArea(int s0, int s1) {
-		if (s0 >= 0) {
-			this.s0 = s0;
-
-		}
-		if (s1 >= 0) {
-			this.s1 = s1;
-
-		}
-	}
-
-	public int[] getColoredArea() {
-		int[] ca = { s0, s1 };
-		return ca;
-	}
-
-	public void setFont(String newFont) {
-		fontName = newFont;
-		this.text.setFont(new Font(fontName, 1, fontSize));
-
-		repaint();
-		revalidate();
-	}
-	public String getFontName() {
-		return fontName;
-	}
-
-	public void fontSize(int size) {
-		fontSize = size;
-	}
-
-	public int getFontSize() {
-		return fontSize;
-	}
-
 }

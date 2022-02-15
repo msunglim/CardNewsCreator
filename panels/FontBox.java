@@ -24,9 +24,9 @@ public class FontBox extends JPanel {
 				// TODO Auto-generated method stub
 				JComboBox cb = (JComboBox) e.getSource();
 				String fontName = (String) cb.getSelectedItem();
-				
-				sp.getCurrCardNews().setFont(fontName);
-			
+				CardNews curr =sp.getCurrCardNews(); 
+				curr.setFontLabel(curr.getMainTextManager(), fontName);
+				curr.setFontLabel(curr.getSubTextManager(), fontName);
 			}
 
 		});
@@ -41,10 +41,12 @@ public class FontBox extends JPanel {
 				// TODO Auto-generated method stub
 				ArrayList<CardNews> list = sp.getAllCardNews();
 				
-				String font = sp.getCurrCardNews().getFontName();
+				CardNews curr =sp.getCurrCardNews(); 
+				String font = curr.getFontName(curr.getMainTextManager());
 				
 				for(CardNews c : list) {
-					c.setFont(font);
+					c.setFontLabel(curr.getMainTextManager(), font);
+					curr.setFontLabel(curr.getSubTextManager(), font);
 				}
 			}
 			

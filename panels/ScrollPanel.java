@@ -20,7 +20,7 @@ public class ScrollPanel extends JPanel {
 
 	public ScrollPanel() {
 
-		setPreferredSize(new Dimension(500, 500));
+//		setPreferredSize(new Dimension(500, 500));
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		sp = new JScrollPane(this, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -31,7 +31,7 @@ public class ScrollPanel extends JPanel {
 
 	public JScrollPane getScrollPane() {
 
-		sp.setPreferredSize(new Dimension(1280, 500));
+		sp.setPreferredSize(new Dimension(1280, 300));
 
 		return sp;
 	}
@@ -43,8 +43,8 @@ public class ScrollPanel extends JPanel {
 	public void addCardNews() {
 
 		CardNews cn = new CardNews();
-		cn.setFontSize(20);
-		
+		cn.setFontSize(cn.getMainTextManager(),20);
+		cn.setFontSize(cn.getSubTextManager(),15);
 		add(cn);
 
 		list.add(cn);

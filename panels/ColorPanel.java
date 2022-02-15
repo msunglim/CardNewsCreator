@@ -15,7 +15,7 @@ public class ColorPanel extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.black));
 
 		String[] colorList = { "#000000", "#0000FF", "green", "00FFFF", "red", "#FF00FF", "yellow", "white" };
-		int index= 0;
+		int index = 0;
 		int r = 0;
 		for (int i = 0; i < 2; i++) {
 			int g = 0;
@@ -38,6 +38,7 @@ public class ColorPanel extends JPanel {
 class ColorBox extends JPanel {
 	private int r, g, b;
 	private String color;
+
 	public ColorBox(ScrollPanel sp, int r, int g, int b, String color) {
 		this.r = r;
 		this.g = g;
@@ -50,8 +51,19 @@ class ColorBox extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				sp.getCurrCardNews().setFontColor(color);
-				CardNewsEditor.getTip().setCurrText(sp.getCurrCardNews());
+				CardNews curr = sp.getCurrCardNews();
+				TextManager currTM = curr.getMainTextManager().getOnUse() ? curr.getMainTextManager()
+						: curr.getSubTextManager();
+				
+				curr.setFontColor(currTM, color);
+				if(currTM == curr.getMainTextManager()) {
+					System.out.println("Main");
+					CardNewsEditor.getTip().setCurrText(currTM, sp.getCurrCardNews());
+				}else {
+					System.out.println("Sub");
+					CardNewsEditor.getTip2().setCurrText(currTM, sp.getCurrCardNews());
+				}
+				
 			}
 
 			@Override

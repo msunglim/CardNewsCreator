@@ -14,7 +14,7 @@ public class Save {
 			
 		
 			// write the image as a PNG
-			ImageIO.write(img, "png", new File("5.png"));
+			ImageIO.write(img, "png", new File(System.currentTimeMillis()+".png"));
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
