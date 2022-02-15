@@ -21,9 +21,9 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				System.out.println("curr"+ curr.getContent());
+//				System.out.println("curr"+ curr.getContent());
 
-				System.out.println("sp"+ sp.getCurrCardNews().getContent());				
+//				System.out.println("sp"+ sp.getCurrCardNews().getContent());				
 				if (curr.getEditImage()) {
 
 					curr.setImageY(curr.getImageY() - 10);

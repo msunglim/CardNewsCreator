@@ -3,7 +3,9 @@ package panels;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -29,6 +31,27 @@ public class FontBox extends JPanel {
 
 		});
 		add(fontList);
+		
+		//current font apply all cardnews button
+		JButton fabt = new JButton("Apply All");
+		fabt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<CardNews> list = sp.getAllCardNews();
+				
+				String font = sp.getCurrCardNews().getFontName();
+				
+				for(CardNews c : list) {
+					c.setFont(font);
+				}
+			}
+			
+		});
+		add(fabt);
+		
+		
 		
 		ColorPanel cp = new ColorPanel(sp);
 		add(cp);

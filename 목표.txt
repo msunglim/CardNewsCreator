@@ -89,6 +89,13 @@ Action task = new AbstractAction() {
 ㄴ커서(caret)위치 textfield에서 int caret = tf.getCaretPosition();
 ㄴㅅㅂ 이런거하면머함? 한글이 타자하나당 한칸이아닌데.. 
 ㄴgetInputMap 이거는 한번 엮은애는 다시는 못엮는다.. 그래서 돌려먹기 불가능이야..
+ㄴhtml로 글자 color정하는데 cyan 이나 magenta 는 안될거야. 그러면 그냥 #00FFFF같이 HEX로 설쟁해두면됨 
+ㄴ폰트 전체적용버튼을 만들어서, curr cardnews의 font를 모든 cardnews에 적용해보자.
+
+
 textarea보다는 textfield를 이용하자
 
 갑자기 궁금해진건데, 있으면 지우고 없으면 넣는건 toggleClass 임.. 자바스크립트긴함.
+
+버튼에 actionListener하는법은 .addActionListener(new ActionListener()){ }임.. 진짜 정직하다
+

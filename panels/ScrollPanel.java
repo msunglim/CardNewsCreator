@@ -119,6 +119,9 @@ public class ScrollPanel extends JPanel {
 		return curr;
 	}
 	
+	public ArrayList<CardNews> getAllCardNews(){
+		return list;
+	}
 
 	
 }

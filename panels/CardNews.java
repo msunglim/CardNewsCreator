@@ -227,6 +227,9 @@ public class CardNews extends JPanel implements ImageResize {
 		repaint();
 		revalidate();
 	}
+	public String getFontName() {
+		return fontName;
+	}
 
 	public void fontSize(int size) {
 		fontSize = size;
