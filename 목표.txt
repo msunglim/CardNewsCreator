@@ -105,6 +105,5 @@ textarea보다는 textfield를 이용하자
 ㄴ color 부분에서 아직 미흡한점이있음. 메인만적용이되는점
 ㄴ move Text에도 메인만적용됌
 ㄴ 지금 tf를 그냥 initialize 할때 tf1로 해서 안되는거같은데.. 
-
-
+ㄴ다함.
 3. add cardnews할때, 현재 카드뉴스 바로 옆에 추가하기..

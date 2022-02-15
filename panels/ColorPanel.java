@@ -57,10 +57,10 @@ class ColorBox extends JPanel {
 				
 				curr.setFontColor(currTM, color);
 				if(currTM == curr.getMainTextManager()) {
-					System.out.println("Main");
+//					System.out.println("Main");
 					CardNewsEditor.getTip().setCurrText(currTM, sp.getCurrCardNews());
 				}else {
-					System.out.println("Sub");
+//					System.out.println("Sub");
 					CardNewsEditor.getTip2().setCurrText(currTM, sp.getCurrCardNews());
 				}
 				

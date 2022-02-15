@@ -22,7 +22,7 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				TextManager tm = curr.getMainTextManager();
+				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("curr"+ curr.getContent());
 
 //				System.out.println("sp"+ sp.getCurrCardNews().getContent());				
@@ -41,7 +41,7 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				TextManager tm = curr.getMainTextManager();
+				TextManager tm = curr.getCurrTextManager();
 				//				System.out.println("down");
 				if (curr.getEditImage()) {
 					curr.setImageY(curr.getImageY() + 10);
@@ -57,7 +57,7 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				TextManager tm = curr.getMainTextManager();
+				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("left");
 				if (curr.getEditImage()) {
 					curr.setImageX(curr.getImageX() - 10);
@@ -73,7 +73,7 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				TextManager tm = curr.getMainTextManager();
+				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("right");
 				if (curr.getEditImage()) {
 					curr.setImageX(curr.getImageX() + 10);
@@ -90,7 +90,7 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				TextManager tm = curr.getMainTextManager();
+				TextManager tm = curr.getCurrTextManager();
 				if (curr.getEditImage()) {
 					curr.resize(5);
 				} else {
@@ -104,7 +104,7 @@ public interface KeyControl {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				TextManager tm = curr.getMainTextManager();
+				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("right");
 				if (curr.getEditImage()) {
 					curr.resize(-5);

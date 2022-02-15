@@ -84,6 +84,9 @@ public class CardNews extends JPanel implements ImageResize {
 		repaint();
 		revalidate();
 	}
+	public TextManager getCurrTextManager() {
+		return (mainText.getOnUse())? mainText : subText;
+	}
 	public TextManager getMainTextManager() {
 		return mainText;
 	}

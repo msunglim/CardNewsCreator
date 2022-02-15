@@ -41,7 +41,7 @@ public class TextInputPanel extends JScrollPane {
 			public void keyPressed(KeyEvent e) {
 				CardNews curr = sp.getCurrCardNews();
 
-				//matching textfield to Jlabel.
+				//matching textfield to Jlabel. 
 				TextManager tm = (tmID==0) ? curr.getMainTextManager() : curr.getSubTextManager();
 				// TODO Auto-generated method stub
 				tm.setOnUse(true);
@@ -154,7 +154,6 @@ public class TextInputPanel extends JScrollPane {
 					list.add(i, "<font color=" + curr.getFontColor(tm) + ">");
 					excuse++;
 					fontTagIndex = i;
-//					System.out.println(fontTagIndex);
 					list.add(i + excuse, "" + tf.getText().charAt(i - 1));
 
 				} else if (i == s1 && s0 != s1) {
@@ -169,7 +168,6 @@ public class TextInputPanel extends JScrollPane {
 			list.add("</html>");
 			curr.setText(tm, getHTMLizedText());
 			curr.setContent(tm, tf.getText());
-//			System.out.println("text:" + tf.getText());
 		}
 	}
 
@@ -180,19 +178,10 @@ public class TextInputPanel extends JScrollPane {
 
 		for (int i = 0; i < list.size(); i++) {
 			html += list.get(i);
-//			System.out.println("add" + list.get(i));
 		}
-//		System.out.println("html:"+ html);
+
 
 		return html;
 	}
-//	public void setFontColor(String color) {
-//	
-//		fontColor = color;
-//		System.out.println("color"+ color);
-//		
-//		setCurrText(sp.getCurrCardNews());
-//
-//	}
 
 }

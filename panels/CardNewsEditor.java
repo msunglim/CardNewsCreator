@@ -140,7 +140,7 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 		getActionMap().put("enter", new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("enter");
+//				System.out.println("enter");
 
 				tip.setCurrText(sp.getCurrCardNews().getMainTextManager(), sp.getCurrCardNews());
 				tip2.setCurrText(sp.getCurrCardNews().getSubTextManager(), sp.getCurrCardNews());
