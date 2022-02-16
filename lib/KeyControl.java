@@ -26,7 +26,7 @@ public interface KeyControl {
 //				System.out.println("curr"+ curr.getContent());
 
 //				System.out.println("sp"+ sp.getCurrCardNews().getContent());				
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 
 					curr.setImageY(curr.getImageY() - 10);
 				} else {
@@ -43,7 +43,7 @@ public interface KeyControl {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getCurrTextManager();
 				//				System.out.println("down");
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 					curr.setImageY(curr.getImageY() + 10);
 				} else {
 					curr.setTextY(tm,10);
@@ -59,7 +59,7 @@ public interface KeyControl {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("left");
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 					curr.setImageX(curr.getImageX() - 10);
 				} else {
 					curr.setTextX(tm,-10);
@@ -75,7 +75,7 @@ public interface KeyControl {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("right");
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 					curr.setImageX(curr.getImageX() + 10);
 				} else {
 //					System.out.println("??zz");
@@ -91,7 +91,7 @@ public interface KeyControl {
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getCurrTextManager();
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 					curr.resize(5);
 				} else {
 					curr.setFontSize(tm,5);
@@ -106,7 +106,7 @@ public interface KeyControl {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getCurrTextManager();
 //				System.out.println("right");
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 					curr.resize(-5);
 				} else {
 					curr.setFontSize(tm,-5);

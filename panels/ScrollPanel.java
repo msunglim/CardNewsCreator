@@ -16,6 +16,7 @@ public class ScrollPanel extends JPanel {
 	// current edited cardnews
 	private static CardNews curr;
 
+	private boolean editImage;
 	private ArrayList<CardNews> list;
 
 	public ScrollPanel() {
@@ -26,6 +27,7 @@ public class ScrollPanel extends JPanel {
 		sp = new JScrollPane(this, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		sb = sp.getHorizontalScrollBar();
 
+		editImage = true;
 		list = new ArrayList<>();
 	}
 
@@ -121,6 +123,13 @@ public class ScrollPanel extends JPanel {
 	
 	public ArrayList<CardNews> getAllCardNews(){
 		return list;
+	}
+	
+	public void setEditImage(boolean tf) {
+		editImage = tf;
+	}
+	public boolean getEditImage() {
+		return editImage;
 	}
 
 	

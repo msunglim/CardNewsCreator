@@ -18,6 +18,7 @@ public class TextManager {
 		text = new JLabel();
 
 		text.setBounds(0, 0, 500, 500);
+		
 		onUse = false;
 	}
 	public void setOnUse(boolean tf) {

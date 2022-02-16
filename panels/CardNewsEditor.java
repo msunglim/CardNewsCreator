@@ -22,7 +22,7 @@ import lib.KeyControl;
 
 public class CardNewsEditor extends JPanel implements KeyControl {
 
-	private static JTextField tf,tf2;
+	private static JTextField tf, tf2;
 	private static ScrollPanel sp;
 	private static TextInputPanel tip, tip2;
 
@@ -110,13 +110,48 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 
 		JPanel textPanel = new JPanel();
 		tf = new JTextField();
-		//if mainText the third parameter is zero, else one.
+		// if mainText the third parameter is zero, else one.
 		tip = new TextInputPanel(sp, tf, 0);
 
 		tf2 = new JTextField();
-		 tip2 = new TextInputPanel(sp, tf2, 1);
+		tip2 = new TextInputPanel(sp, tf2, 1);
 		textPanel.setPreferredSize(new Dimension(1200, 230));
+		
+		
+		JButton b1 = new JButton("1");
+		JButton b2 = new JButton("2");
+		
+		b1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardNews curr = sp.getCurrCardNews();
+				TextManager tm = curr.getMainTextManager();
+				tm.setOnUse(true);
+				
+				curr.getSubTextManager().setOnUse(false);
+			}
+			
+		});
+		
+		b2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardNews curr = sp.getCurrCardNews();
+				TextManager tm = curr.getSubTextManager();
+				tm.setOnUse(true);
+				
+				curr.getMainTextManager().setOnUse(false);				
+			}
+			
+		});
+		textPanel.add(b1);
 		textPanel.add(tip);
+		
+		textPanel.add(b2);
 		textPanel.add(tf2);
 
 		add(textPanel, BorderLayout.SOUTH);
@@ -124,9 +159,9 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 
 			public void actionPerformed(ActionEvent e) {
 				CardNews curr = sp.getCurrCardNews();
-				curr.setEditImage(!curr.getEditImage());
+				sp.setEditImage(!sp.getEditImage());
 
-				if (curr.getEditImage()) {
+				if (sp.getEditImage()) {
 					addTextButton.setText("Edit Text");
 
 				} else {
@@ -166,6 +201,7 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 	public static TextInputPanel getTip() {
 		return tip;
 	}
+
 	public static TextInputPanel getTip2() {
 		return tip2;
 	}

@@ -28,9 +28,10 @@ public class TextInputPanel extends JScrollPane {
 		this.tf = tf;
 		fontTagIndex = 0;
 //		fontColor = "red";
-		tf.setPreferredSize(new Dimension(1200, 100));
+		tf.setPreferredSize(new Dimension(1500, 100));
 		tf.setFont(new Font("Helvetica", 1, 30));
 		sp.getCurrCardNews().getMainTextManager().setOnUse(true);
+		
 		tf.addKeyListener(new KeyListener() {
 
 			public void keyTyped(KeyEvent e) {

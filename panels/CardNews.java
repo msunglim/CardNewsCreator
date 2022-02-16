@@ -20,16 +20,10 @@ public class CardNews extends JPanel implements ImageResize {
 	private int imgX, imgY;
 
 	private TextManager mainText, subText;
-//	private JLabel text;
-//	private String content; // content of text
-//	private String fontName;
-//	private String fontColor;
-//	private int fontSize;
-//	private int s0, s1; //highlighted area index
 
 	final int width = 500, height = 500;
 
-	private boolean editImage;
+//	private boolean editImage;
 
 	public CardNews() {
 
@@ -40,26 +34,19 @@ public class CardNews extends JPanel implements ImageResize {
 		setBackground(Color.WHITE);
 		setLayout(null);
 
-//		String id = "" + System.currentTimeMillis();
-//		JLabel l = new JLabel(id);
-//	
-//		add(l);
-
-		// default coordinate of iamge
 		imgX = 0;
 		imgY = 0;
 
-		// edit image is default value (use arrows/ +- keys)
-		editImage = true;
+//		editImage = true;
 
-//		fontColor = "red";
-//		this.text = new JLabel();
-//		fontName = "휴먼매직체";
-//		fontSize = 20;
 
 		mainText = new TextManager();
 		subText = new TextManager();
-		
+
+		mainText.setFontSize(65);
+		mainText.setTextY(-100);
+		subText.setFontSize(15);
+		subText.setTextY(100);
 		add(mainText.getTextLabel());
 		add(subText.getTextLabel());
 
@@ -149,7 +136,6 @@ public class CardNews extends JPanel implements ImageResize {
 	public void setText(TextManager tm, String text) {
 
 		tm.setText(text);
-		// tm.setFontLabel(new Font(tm.getFontName(), 1, tm.getFontSize()));
 
 		repaint();
 		revalidate();
@@ -162,8 +148,6 @@ public class CardNews extends JPanel implements ImageResize {
 	public void setFontSize(TextManager tm, int size) {
 
 		tm.setFontSize(size);
-//		this.text.setFont(new Font(fontName, 1, fontSize + size));
-//		fontSize += size;
 
 	}
 
@@ -179,7 +163,6 @@ public class CardNews extends JPanel implements ImageResize {
 
 	public void setTextX(TextManager tm,int x) {
 		tm.setTextX(x);
-//		text.setBounds(text.getX() + x, text.getY(), text.getWidth(), text.getHeight());
 		repaint();
 		revalidate();
 	}
@@ -188,7 +171,6 @@ public class CardNews extends JPanel implements ImageResize {
 
 		tm.setTextY(y);
 		
-//		text.setBounds(text.getX(), text.getY() + y, text.getWidth(), text.getHeight());
 		repaint();
 		revalidate();
 
@@ -216,10 +198,9 @@ public class CardNews extends JPanel implements ImageResize {
 	}
 
 	public void setFontLabel(TextManager tm, String newFont) {
-//		fontName = newFont;
-//		this.text.setFont(new Font(fontName, 1, fontSize));
 
 		tm.setFontLabel(newFont);
+//		System.out.println(newFont);
 		repaint();
 		revalidate();
 	}
@@ -257,13 +238,13 @@ public class CardNews extends JPanel implements ImageResize {
 		return imgY;
 	}
 
-	public boolean getEditImage() {
-		return editImage;
-	}
-
-	public void setEditImage(boolean tf) {
-		editImage = tf;
-	}
+//	public boolean getEditImage() {
+//		return editImage;
+//	}
+//
+//	public void setEditImage(boolean tf) {
+//		editImage = tf;
+//	}
 
 	public BufferedImage getBackgroundImage() {
 		return background;

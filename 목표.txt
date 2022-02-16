@@ -106,4 +106,9 @@ textarea보다는 textfield를 이용하자
 ㄴ move Text에도 메인만적용됌
 ㄴ 지금 tf를 그냥 initialize 할때 tf1로 해서 안되는거같은데.. 
 ㄴ다함.
-3. add cardnews할때, 현재 카드뉴스 바로 옆에 추가하기..
+
+3. 캡쳐후 복붙기능구현
+*와 ㅈㄴ 신기한거알아냄. import java.awt.Robot 이란게잇느데 Robot robot = new Robot() 이런게 있딴말이야.. 근데 이거 대단한게 컴퓨터를 제어할 수 있어. 무슨말이냐면 캡쳐는 기본이고 강제로 마우스를 누른거같은 효과를 준다니까??
+ㄴframe이아니라 컴퓨터에 addmouselistener을 구현한뒤, 마우스 pressed 때 좌표저장, released 때 좌표저장해서 그 영역을 스크린샷으로 캡쳐하고 curr cardnews에 넣기,
+
+

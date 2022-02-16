@@ -43,10 +43,11 @@ public class FontBox extends JPanel {
 				
 				CardNews curr =sp.getCurrCardNews(); 
 				String font = curr.getFontName(curr.getMainTextManager());
-				
+//				System.out.println(font);
 				for(CardNews c : list) {
-					c.setFontLabel(curr.getMainTextManager(), font);
-					curr.setFontLabel(curr.getSubTextManager(), font);
+					c.setFontLabel(c.getMainTextManager(), font);
+					c.setFontLabel(c.getSubTextManager(), font);
+				
 				}
 			}
 			
