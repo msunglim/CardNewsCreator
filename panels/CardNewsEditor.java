@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -25,6 +26,8 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 	private static JTextField tf, tf2;
 	private static ScrollPanel sp;
 	private static TextInputPanel tip, tip2;
+
+	private FileUpload fu;
 
 	public CardNewsEditor(ScrollPanel sp) {
 		this.sp = sp;
@@ -96,12 +99,11 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 						curr.setImage(null);
 					} else {
 
-						FileUpload fu = new FileUpload(curr);
+						// FileUpload fu = new FileUpload(curr);
+						System.out.println("img button");
 
-						if (fu.getImage() != null) {
-							curr.setImage(fu.getImage());
+						fu = new FileUpload(CardNewsEditor.this);
 
-						}
 					}
 
 				}
@@ -116,11 +118,10 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 		tf2 = new JTextField();
 		tip2 = new TextInputPanel(sp, tf2, 1);
 		textPanel.setPreferredSize(new Dimension(1200, 230));
-		
-		
+
 		JButton b1 = new JButton("1");
 		JButton b2 = new JButton("2");
-		
+
 		b1.addActionListener(new ActionListener() {
 
 			@Override
@@ -129,12 +130,12 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getMainTextManager();
 				tm.setOnUse(true);
-				
+
 				curr.getSubTextManager().setOnUse(false);
 			}
-			
+
 		});
-		
+
 		b2.addActionListener(new ActionListener() {
 
 			@Override
@@ -143,14 +144,14 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 				CardNews curr = sp.getCurrCardNews();
 				TextManager tm = curr.getSubTextManager();
 				tm.setOnUse(true);
-				
-				curr.getMainTextManager().setOnUse(false);				
+
+				curr.getMainTextManager().setOnUse(false);
 			}
-			
+
 		});
 		textPanel.add(b1);
 		textPanel.add(tip);
-		
+
 		textPanel.add(b2);
 		textPanel.add(tf2);
 
@@ -204,5 +205,16 @@ public class CardNewsEditor extends JPanel implements KeyControl {
 
 	public static TextInputPanel getTip2() {
 		return tip2;
+	}
+
+	public void setImage(BufferedImage img, int w, int h) {
+		CardNews curr = sp.getCurrCardNews();
+//		System.out.println("hahaaa");
+		if (fu.getScreenShot() != null) {
+			// curr.setImage(fu.getImage());
+
+			curr.setImage(img, w, h);
+
+		}
 	}
 }

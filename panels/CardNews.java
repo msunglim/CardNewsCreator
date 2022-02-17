@@ -97,12 +97,18 @@ public class CardNews extends JPanel implements ImageResize {
 			background = null;
 		}
 	}
-
+	
+	//it would be null
 	public void setImage(BufferedImage img) {
+		
+			this.img = null;
+		
+	}
+	public void setImage(BufferedImage img, int newW, int newH) {
 		if (img != null) {
 
-			int newW = width / 2;
-			int newH = height / 2;
+//			int newW = width / 2;
+//			int newH = height / 2;
 
 			this.img = resizeImage(img, newW, newH);
 
@@ -115,8 +121,9 @@ public class CardNews extends JPanel implements ImageResize {
 		if (img == null) {
 			return;
 		}
-		int newW = img.getWidth() + size;
-		int newH = img.getHeight() + size;
+		double constant = (size >0)? 1.5 : 0.75;
+		int newW = (int)(img.getWidth() * constant);
+		int newH = (int) (img.getHeight() * constant);
 		if (newW <= 0 || newH <= 0) {
 			return;
 		}

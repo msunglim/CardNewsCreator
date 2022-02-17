@@ -110,5 +110,13 @@ textarea보다는 textfield를 이용하자
 3. 캡쳐후 복붙기능구현
 *와 ㅈㄴ 신기한거알아냄. import java.awt.Robot 이란게잇느데 Robot robot = new Robot() 이런게 있딴말이야.. 근데 이거 대단한게 컴퓨터를 제어할 수 있어. 무슨말이냐면 캡쳐는 기본이고 강제로 마우스를 누른거같은 효과를 준다니까??
 ㄴframe이아니라 컴퓨터에 addmouselistener을 구현한뒤, 마우스 pressed 때 좌표저장, released 때 좌표저장해서 그 영역을 스크린샷으로 캡쳐하고 curr cardnews에 넣기,
+ㄴ 구현함. 근데 중요한점. Screenshot extends JFrame 이라고했을때 
+setUndecorated(true);
+		setBackground(new Color(1.0f, 1.0f, 1.0f, 0.1f));
+		setVisible(true);
 
+		MainFrame mainFrame = (MainFrame) SwingUtilities.getWindowAncestor(cne);
+		mainFrame.minimize();
+이순서대로해야 스샷시도시 원래 frame이 내려가고 캡쳐하는 화면이 포커스가돼. 반대로 minimize를 먼저하면, 스샷찍는 frame도 같이 내려가서 안보여!
 
+마지막으로 굳이할게있다면 , 스크린 캡쳐한거는 스크린 캡쳐한 비율그대로 올려볼까
